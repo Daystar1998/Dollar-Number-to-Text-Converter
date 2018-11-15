@@ -51,7 +51,7 @@ int roundCents(string &cents) {
 	int result = 0;
 
 	// Round centsToken to 2 digits and convert to integer
-	if (cents[2] - '0' >= 5) {
+	if (cents[2] >= '5') {
 
 		// Round up
 		result = stoi(cents.substr(0, 2)) + 1;
@@ -428,7 +428,7 @@ int main() {
 
 	do {
 
-		cout << "Amount? ";
+		//cout << "Amount? ";
 		cin >> amount;
 	} while (stoi(amount) < 0 || stoi(amount) > 1000000000);
 
@@ -439,13 +439,17 @@ int main() {
 
 		splitByDecimalPoint(amount, dollars, cents);
 
+		// Remove leading zeros from dollars
+		dollars = to_string(stoi(dollars));
+
 		dollars = processDollars(dollars);
 
+		cout << amount << endl;
 		printAmount(dollars, cents);
 
 		do {
 
-			cout << "Amount? ";
+			//cout << "Amount? ";
 			cin >> amount;
 		} while (stoi(amount) < 0 || stoi(amount) > 1000000000);
 	}
